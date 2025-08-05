@@ -4,7 +4,6 @@ const fs = require("fs");
 require('dotenv').config();
 
 const npsso = process.env.npsso;
-console.log(npsso);
 
 async function main() {
     const startTime = new Date().getTime();
