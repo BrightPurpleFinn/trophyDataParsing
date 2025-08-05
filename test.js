@@ -3,7 +3,7 @@ const { exchangeAccessCodeForAuthTokens, exchangeNpssoForAccessCode,
 const fs = require("fs");
 require('dotenv').config();
 
-const npsso = process.env.npsso;
+const npsso = "b"
 
 async function main() {
     const startTime = new Date().getTime();
@@ -202,7 +202,11 @@ function extractGameData(object) {
  * @returns 
  */
 async function getAuth() {
-    return await exchangeAccessCodeForAuthTokens(await exchangeNpssoForAccessCode(npsso));
+    try {
+        return await exchangeAccessCodeForAuthTokens(await exchangeNpssoForAccessCode(npsso));
+    } catch (error) {
+        throw (new Error("TESTING"));
+    }
 }
 
 /**
