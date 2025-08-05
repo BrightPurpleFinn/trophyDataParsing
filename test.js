@@ -4,7 +4,6 @@ const fs = require("fs");
 require('dotenv').config();
 
 const npsso = process.env.npsso;
-console.log(npsso);
 
 async function main() {
     const startTime = new Date().getTime();
@@ -203,7 +202,11 @@ function extractGameData(object) {
  * @returns 
  */
 async function getAuth() {
-    return await exchangeAccessCodeForAuthTokens(await exchangeNpssoForAccessCode(npsso));
+    try {
+        return await exchangeAccessCodeForAuthTokens(await exchangeNpssoForAccessCode(npsso));
+    } catch (error) {
+        throw (new Error("TESTING"));
+    }
 }
 
 /**
@@ -224,4 +227,7 @@ async function getAllTitles(authCode) {
     return titles;
 }
 
-main().catch(console.error);
+main().catch(err => {
+    console.error(err);
+    process.exit(1);
+});
