@@ -3,7 +3,7 @@ const { exchangeAccessCodeForAuthTokens, exchangeNpssoForAccessCode,
 const fs = require("fs");
 require('dotenv').config();
 
-const npsso = "b"
+const npsso = process.env.npsso;
 
 async function main() {
     const startTime = new Date().getTime();
